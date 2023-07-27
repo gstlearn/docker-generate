@@ -1,0 +1,25 @@
+name: ubuntu-16 for Jupyter notebooks and R Markdown demos 
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Manual'     
+        required: false
+        default: ''  
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and push ubuntu-16-demos-rmd-ipynb docker
+        working-directory: .
+        run: |
+          docker build -t ${{env.USER}}/ubuntu-16-demos-rmd-ipynb -f ubuntu/16/Dockerfile_demos_rmd_ipynb .
+          docker login -u ${{env.USER}} -p ${{env.TOKEN}}
+          docker push ${{env.USER}}/ubuntu-16-demos-rmd-ipynb
+          docker logout
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
