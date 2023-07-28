@@ -23,6 +23,7 @@ RUN apt-get install -y zlib1g-dev &&\
 # ==============================================================
 RUN apt-get install -y gfortran &&\
     apt-get install -y libtiff5-dev &&\
+    apt-get install -y tzdata &&\
     apt-get install -y libbz2-dev &&\
     apt-get install -y libcairo2-dev &&\
     apt-get install -y libxt-dev &&\
@@ -69,6 +70,24 @@ RUN git clone https://github.com/fabien-ors/swig &&\
     cd ../.. &&\
     rm -rf swig
 
+# Install dev libs & tools (for gstlearn)
+# ==============================================================
+RUN apt-get install -y libboost-dev &&\
+    apt-get install -y doxygen
+
+# Install HDF5 lib (for gstlearn)
+# ==============================================================
+RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.1/src/CMake-hdf5-1.12.1.tar.gz &&\
+    tar -xvf CMake-hdf5-1.12.1.tar.gz &&\
+    cd CMake-hdf5-1.12.1 &&\
+    mkdir build &&\
+    cd build &&\
+    cmake -DHDF5_GENERATE_HEADERS:BOOL=OFF -DBUILD_SHARED_LIBS:BOOL=OFF -DDEFAULT_API_VERSION:STRING=v110 -DCMAKE_BUILD_TYPE:STRING=Release -DHDF5_BUILD_FORTRAN:BOOL=OFF -DHDF5_BUILD_CPP_LIB:BOOL=ON -DHDF5_BUILD_JAVA:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=/opt/hdf5-1.12.1 -DHDF5_ENABLE_SZIP_SUPPORT:BOOL=OFF -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=OFF -DBUILD_TESTING:BOOL=OFF -DHDF5_BUILD_TOOLS:BOOL=OFF ../hdf5-1.12.1 &&\
+    make -j 8 &&\
+    make install &&\
+    cd ../.. &&\
+    rm -rf CMake-hdf5-1.12.1*
+    
 # Install last version of R (from source) + packages
 # ==============================================================
 RUN wget https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz &&\
