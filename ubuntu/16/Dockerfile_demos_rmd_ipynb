@@ -96,10 +96,9 @@ RUN wget https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz &&\
     ./configure --with-readline=no -with-x=no --with-pcre1 --enable-R-shlib &&\
     make &&\
     make install &&\
+    Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')" &&\
     cd .. &&\
     rm -rf R-4.3.0*
-
-RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
 
 # Install last version of Python (from source) + packages
 # ==============================================================
