@@ -88,7 +88,7 @@ RUN wget https://cran.r-project.org/src/base/R-4/R-4.3.0.tar.gz &&\
     ./configure --with-readline=no -with-x=no --with-pcre1 --enable-R-shlib &&\
     make &&\
     make install &&\
-    Rscript -e "install.packages(c('devtools'), repos='https://cloud.r-project.org/')" &&\
+    Rscript -e "install.packages(c('devtools'), repos='https://cloud.r-project.org/', dependencies = TRUE)" &&\
     cd .. &&\
     rm -rf R-4.3.0*
 
