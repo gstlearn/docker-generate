@@ -1,4 +1,4 @@
-FROM fabienors:ubuntu-16-swigex0
+FROM fabienors/ubuntu-16-swigex0
 
 # Install dev libs & tools (for gstlearn)
 # ==============================================================
