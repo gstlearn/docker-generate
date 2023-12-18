@@ -2,7 +2,8 @@ FROM fabienors/ubuntu-16-swigex0
 
 # Install dev libs & tools (for gstlearn)
 # ==============================================================
-RUN apt-get install -y libboost-dev
+RUN apt-get install -y libboost-dev &&\
+    apt-get install -y libeigen3-dev
 
 # Install HDF5 lib (for gstlearn)
 # ==============================================================
