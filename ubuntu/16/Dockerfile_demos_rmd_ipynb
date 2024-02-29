@@ -1,4 +1,4 @@
-FROM fabienors/ubuntu-16-swigex0
+FROM fabienors/ubuntu-16-demos-rmd-ipynb
 
 # Install dev libs & tools (for gstlearn)
 # ==============================================================
@@ -22,11 +22,11 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.1/sr
 
 # Install R packages dependencies
 # ==============================================================
-RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
+RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
 
 # Install Python packages dependencies
 # ==============================================================
-RUN python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse
+RUN python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse shapely
 
 
 
