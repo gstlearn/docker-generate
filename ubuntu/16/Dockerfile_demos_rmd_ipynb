@@ -23,12 +23,12 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.1/sr
 
 # Install R packages dependencies (used by demos)
 # ==============================================================
-RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
+RUN Rscript -e "install.packages (c('ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
 
 # Install Python packages dependencies (used by demos)
 # ==============================================================
 RUN export PATH=/opt/python/py311/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin &&\
-    python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse shapely
+    python3 -m pip install pandas scipy matplotlib geopandas plotly scikit-sparse shapely
 
 
 
