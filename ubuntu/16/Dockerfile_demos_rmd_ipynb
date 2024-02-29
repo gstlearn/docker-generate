@@ -9,8 +9,8 @@ RUN apt-get install -y libboost-dev &&\
 
 # Install recent Eigen3 header files (for gstlearn)
 # ==============================================================
-RUN mkdir eigen_src
-    curl --progress-bar --location --output eigen_src/download.zip https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip &&\
+RUN mkdir eigen_src &&\
+    curl --progress-bar --location --output eigen_src/download.zip "https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip" &&\
     7z -oeigen_src x eigen_src/download.zip -y -bd &&\
     cd eigen_src &&\
     cd eigen-* &&\
