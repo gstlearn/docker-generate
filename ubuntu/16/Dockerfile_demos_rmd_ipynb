@@ -26,7 +26,8 @@ RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', '
 
 # Install Python packages dependencies
 # ==============================================================
-RUN python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse shapely
+RUN export PATH=/opt/python/py311/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin &&\
+    python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse shapely
 
 
 
