@@ -3,6 +3,7 @@ FROM fabienors/ubuntu-16-demos-rmd-ipynb
 # Install dev libs & tools (for gstlearn)
 # ==============================================================
 RUN apt-get install -y libboost-dev &&\
+    apt-get install -y libsuitesparse-dev &&\
     apt-get install -y libeigen3-dev &&\
     apt-get install -y libopenmpi-dev &&\
     apt-get install -y doxygen
@@ -20,11 +21,11 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.1/sr
     cd ../.. &&\
     rm -rf CMake-hdf5-1.12.1*
 
-# Install R packages dependencies
+# Install R packages dependencies (used by demos)
 # ==============================================================
 RUN Rscript -e "install.packages (c('knitr', 'rmarkdown', 'ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
 
-# Install Python packages dependencies
+# Install Python packages dependencies (used by demos)
 # ==============================================================
 RUN export PATH=/opt/python/py311/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin &&\
     python3 -m pip install "pybind11[global]" wheel numpy jupyter pandas scipy matplotlib pypandoc geopandas plotly scikit-sparse shapely
