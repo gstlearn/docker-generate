@@ -5,7 +5,8 @@ FROM fabienors/ubuntu-16-demos-rmd-ipynb
 RUN apt-get install -y libboost-dev &&\
     apt-get install -y libsuitesparse-dev &&\
     apt-get install -y libopenmpi-dev &&\
-    apt-get install -y doxygen
+    apt-get install -y doxygen &&\
+    apt-get install -y curl
 
 # Install recent Eigen3 header files (for gstlearn)
 # ==============================================================
