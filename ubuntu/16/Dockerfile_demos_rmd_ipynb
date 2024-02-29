@@ -4,9 +4,18 @@ FROM fabienors/ubuntu-16-demos-rmd-ipynb
 # ==============================================================
 RUN apt-get install -y libboost-dev &&\
     apt-get install -y libsuitesparse-dev &&\
-    apt-get install -y libeigen3-dev &&\
     apt-get install -y libopenmpi-dev &&\
     apt-get install -y doxygen
+
+# Install recent Eigen3 header files (for gstlearn)
+# ==============================================================
+RUN mkdir eigen_src
+    curl --progress-bar --location --output eigen_src/download.zip https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip &&\
+    7z -oeigen_src x eigen_src/download.zip -y -bd &&\
+    cd eigen_src &&\
+    cd eigen-* &&\
+    cmake -Bbuild &&\
+    cmake --build build --target install
 
 # Install HDF5 lib (for gstlearn)
 # ==============================================================
