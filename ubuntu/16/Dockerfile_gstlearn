@@ -3,8 +3,21 @@ FROM fabienors/ubuntu-16-swigex0
 # Install dev libs & tools (for gstlearn)
 # ==============================================================
 RUN apt-get install -y libboost-dev &&\
-    apt-get install -y libeigen3-dev &&\
     apt-get install -y libopenmpi-dev
+
+# Install recent Eigen3 header files (for gstlearn)
+# ==============================================================
+RUN mkdir eigen_src &&\
+    cd eigen_src &&\
+    wget https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.zip &&\
+    unzip eigen-3.4.0.zip &&\
+    ls &&\
+    cd eigen-* &&\
+    ls &&\
+    cmake -Bbuild &&\
+    cmake --build build --target install &&\
+    cd .. &&\
+    rm -rf eigen_src
 
 # Install HDF5 lib (for gstlearn)
 # ==============================================================
