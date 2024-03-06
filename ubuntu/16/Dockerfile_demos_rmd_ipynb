@@ -41,7 +41,7 @@ RUN Rscript -e "install.packages (c('ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale'
 # Install Python packages dependencies (used by demos)
 # ==============================================================
 RUN export PATH=/opt/python/py311/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin &&\
-    python3 -m pip install pandas scipy matplotlib geopandas plotly scikit-sparse shapely
+    python3 -m pip install pandas scipy matplotlib geopandas plotly scikit-sparse shapely dash urllib jupyter
 
 
 
