@@ -36,7 +36,7 @@ RUN wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.1/sr
 
 # Install R packages dependencies (used by demos)
 # ==============================================================
-RUN Rscript -e "install.packages (c('ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN'), repos='https://cloud.r-project.org/')"
+RUN Rscript -e "install.packages (c('ggplot2', 'ggpubr', 'ggrepel', 'ggnewscale', 'lares', 'Matrix', 'FNN', 'tidyr', 'geigen'), repos='https://cloud.r-project.org/')"
 
 # Install Python packages dependencies (used by demos)
 # ==============================================================
