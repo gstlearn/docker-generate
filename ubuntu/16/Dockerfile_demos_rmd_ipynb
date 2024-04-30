@@ -42,7 +42,7 @@ RUN Rscript -e "install.packages (c('ggplot2', 'vctrs', 'ggpubr', 'ggrepel', 'gg
 # ==============================================================
 RUN export PATH=/opt/python/py311/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin &&\
     jupyter --version &&\
-    python3 -m pip install pandas scipy matplotlib plotly scikit-sparse shapely dash
+    python3 -m pip install pandas scipy matplotlib plotly geopandas scikit-sparse shapely dash
 
 
 
