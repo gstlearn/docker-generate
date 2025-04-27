@@ -1,4 +1,4 @@
-name: almalinux-8 for gstlearn software
+name: almalinux-8 for gstlearn-based R software
 
 on:
   workflow_dispatch:
@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build and push almalinux-8-gstlearn-r docker
+      - name: Build and push almalinux-8-swigex0-r docker
         working-directory: .
         run: |
-          docker build -t ${{env.USER}}/almalinux-8-gstlearn-r -f almalinux/8/Dockerfile_gstlearn_r .
+          docker build -t ${{env.USER}}/almalinux-8-swigex0-r -f almalinux/8/Dockerfile_swigex0_r .
           docker login -u ${{env.USER}} -p ${{env.TOKEN}}
-          docker push ${{env.USER}}/almalinux-8-gstlearn-r
+          docker push ${{env.USER}}/almalinux-8-swigex0-r
           docker logout
         env:
           USER: ${{ secrets.DOCKER_HUB_USERNAME }}
