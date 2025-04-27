@@ -1,0 +1,25 @@
+name: almalinux-8 for gstlearn software
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Manual'     
+        required: false
+        default: ''  
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and push almalinux-8-gstlearn-r docker
+        working-directory: .
+        run: |
+          docker build -t ${{env.USER}}/almalinux-8-gstlearn-r -f almalinux/8/Dockerfile_gstlearn_r .
+          docker login -u ${{env.USER}} -p ${{env.TOKEN}}
+          docker push ${{env.USER}}/almalinux-8-gstlearn-r
+          docker logout
+        env:
+          USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
