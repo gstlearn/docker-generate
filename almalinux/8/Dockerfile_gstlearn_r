@@ -1,5 +1,14 @@
 FROM fabienors/almalinux-8-swigex0-r
 
+# UPDATE repo
+RUN dnf -y update
+
+# INSTALL dependencies
+RUN dnf -y install gdal-devel proj-devel geos-devel sqlite-devel udunits2-devel
+
+# INSTALL R dependencies
+RUN Rscript -e "install.packages (c('ggpubr', 'ggplot2', 'ggnewscale'), repos='https://cloud.r-project.org/', dependencies = TRUE)"
+        
 # Install recent Boost HEADER header files
 # ==============================================================
 RUN wget https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz && \
