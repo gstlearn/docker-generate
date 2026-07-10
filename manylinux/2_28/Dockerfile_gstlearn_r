@@ -1,5 +1,15 @@
 FROM fabienors/manylinux_2_28-swigex0-r
 
+# Install recent python
+# ==============================================================
+RUN wget https://www.python.org/ftp/python/3.11.0/Python-3.11.0.tgz && \
+    tar -xvzf Python-3.11.0.tgz && \
+    cd Python-3.11.0 && \
+    ./configure --enable-optimizations && \
+    make -j 8 && \
+    make altinstall && \
+    rm -rf Python-3.11.0*
+
 # Install recent Boost HEADER header files
 # ==============================================================
 RUN wget https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz && \
